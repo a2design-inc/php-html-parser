@@ -88,6 +88,7 @@ class Dom
         'base',
         'embed',
         'spacer',
+        '!--'
     ];
 
     /**
@@ -506,7 +507,7 @@ class Dom
 
         // attributes
         while ($this->content->char() != '>' &&
-            $this->content->char() != '/') {
+            $this->content->char() != '/' && $tag !== '!--') {
             $space = $this->content->skipByToken('blank', true);
             if (empty($space)) {
                 $this->content->fastForward(1);

@@ -373,7 +373,9 @@ class Dom
         $str = mb_eregi_replace("<!doctype(.*?)>", '', $str);
 
         // strip out comments
-        $str = mb_eregi_replace("<!--(.*?)-->", '', $str);
+        if ($this->options->get('removeComments')) {
+            $str = mb_eregi_replace("<!--(.*?)-->", '', $str);
+        }
 
         // strip out cdata
         $str = mb_eregi_replace("<!\[CDATA\[(.*?)\]\]>", '', $str);

@@ -376,6 +376,7 @@ class Dom
         if ($this->options->get('removeComments')) {
             $str = mb_eregi_replace("<!--(.*?)-->", '', $str);
         }
+        $str = mb_eregi_replace("<!-->", '', $str);
 
         // strip out cdata
         $str = mb_eregi_replace("<!\[CDATA\[(.*?)\]\]>", '', $str);

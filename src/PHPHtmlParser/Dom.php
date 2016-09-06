@@ -374,7 +374,7 @@ class Dom
         $str = mb_eregi_replace("<!doctype(.*?)>", '', $str);
 
         // strip out comments
-        if ($this->options->get('removeComments')) {
+        if (!$this->options->get('allowComments')) {
             $str = mb_eregi_replace("<!--(.*?)-->", '', $str);
         }
         $str = mb_eregi_replace("<!-->", '', $str);
@@ -398,7 +398,9 @@ class Dom
         $str = mb_eregi_replace("(<\?)(.*?)(\?>)", '', $str);
 
         // strip smarty scripts
-        $str = mb_eregi_replace("(\{\w)(.*?)(\})", '', $str);
+        if (!$this->options->get('allowBladeTags')) {
+            $str = mb_eregi_replace("(\{\w)(.*?)(\})", '', $str);
+        }
 
         return $str;
     }
